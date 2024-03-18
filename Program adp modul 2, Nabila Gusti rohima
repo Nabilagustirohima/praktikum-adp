@@ -1,0 +1,199 @@
+program Pesanan_di_Restoran_ELLA;
+uses crt;
+var
+  jenisPesanan, makanan, minuman, atasnamasiapa : string;
+  hargaMakanan, hargaMinuman, jumlahMakanan, jumlahMinuman: integer;
+  totalHarga: integer;
+
+begin
+ clrscr;
+  writeln('Selamat datang di Restoran ELLA');
+  writeln('Silakan pilih jenis pesanan:');
+  writeln('1. Makanan');
+  writeln('2. Minuman');
+  writeln('3. Makanan dan Minuman');
+  writeln('silahkan pilih jenis pesanannya');
+  readln(jenisPesanan);
+
+  if jenisPesanan = '1' then
+  begin
+    writeln('Daftar Menu Makanan:');
+    writeln('1. seblak - Rp. 12000');
+    writeln('2. Mie Ayam dan ceker - Rp. 16000');
+    writeln('3. Bakso dan tetelan - Rp. 15000');
+    writeln('4. Sup tulang sapi - Rp. 30000');
+    writeln('5. Batagor - Rp. 5000');
+    writeln('Pilih makanan:');
+    readln(makanan);
+    writeln('Jumlah:');
+    readln(jumlahMakanan);
+    if makanan = '1' then
+      begin
+      hargaMakanan := 12000
+      end
+    else if makanan = '2' then
+      begin
+      hargaMakanan := 16000
+      end
+    else if makanan = '3' then
+    begin
+      hargaMakanan := 15000
+      end
+    else if makanan = '4' then
+      begin
+      hargaMakanan := 30000
+      end
+    else if makanan = '5' then
+    begin
+      hargaMakanan := 5000;
+      end; 
+      
+    totalHarga := hargaMakanan * jumlahMakanan;
+    writeln('Pesanan Anda:');
+    writeln('Makanan: ', makanan, ' - Rp. ', hargaMakanan);
+    writeln('Jumlah: ', jumlahMakanan);
+    writeln('Total Harga: Rp. ', totalHarga);
+ 
+    write('atas nama siapa: ') ;
+    readln(atasnamasiapa) ;
+    writeln('TERIMAKASIH SUDAH DATANG DIRESTORAN KAMI, SILAHKAN DITUNGGU PESANANNYA, SEMOGA MEMUASKAN');
+    end
+  else if jenisPesanan = '2' then
+  begin
+    writeln('Daftar Menu Minuman:');
+    writeln('1. Es bubur sumsum - Rp. 7000');
+    writeln('2. Jus Jeruk - Rp. 6000');
+    writeln('3. Es tebak  - Rp. 5000');
+    writeln('4. Es oyen - Rp. 6000');
+    writeln('5. Jus alpukat - Rp. 8000');
+    writeln('6. es kelapa  - Rp. 5000');
+    writeln('Pilih minuman:');
+    readln(minuman);
+    writeln('Jumlah:');
+    readln(jumlahMinuman);
+    if minuman = '1' then
+    begin
+      hargaMinuman := 7000
+      end
+    else if minuman = '2' then
+    begin
+      hargaMinuman := 6000
+      end
+    else if minuman = '3' then
+    begin
+      hargaMinuman := 5000;
+      end
+    else if minuman = '4' then
+    begin
+      hargaMinuman := 6000
+      end
+    else if minuman = '5' then
+    begin
+      hargaMinuman := 8000
+      end
+    else if minuman = '6' then
+    begin
+      hargaMinuman := 5000;
+      end;
+
+
+    totalHarga := hargaMinuman * jumlahMinuman;
+    writeln('Pesanan Anda:');
+    writeln('Minuman: ', minuman, ' - Rp. ', hargaMinuman);
+    writeln('Jumlah: ', jumlahMinuman);
+    writeln('Total Harga: Rp. ', totalHarga);
+
+    write('atas nama siapa: ') ;
+    readln(atasnamasiapa) ;
+    writeln('TERIMAKASIH SUDAH DATANG DIRESTORAN KAMI, SILAHKAN DITUNGGU PESANANNYA, SEMOGA MEMUASKAN');
+
+  end
+  else if jenisPesanan = '3' then
+  begin
+   
+    writeln('Daftar Menu Makanan:');
+    writeln('1. seblak - Rp. 12000');
+    writeln('2. Mie Ayam dan ceker - Rp. 16000');
+    writeln('3. Bakso dan tetelan - Rp. 15000');
+    writeln('4. Sup tulang sapi - Rp. 30000');
+    writeln('5. Batagor - Rp. 5000');
+    writeln('Pilih makanan:');
+    readln(makanan);
+    writeln('Jumlah:');
+    readln(jumlahMakanan);
+    if makanan = '1' then
+      begin
+      hargaMakanan := 12000
+      end
+    else if makanan = '2' then
+      begin
+      hargaMakanan := 16000
+      end
+    else if makanan = '3' then
+    begin
+      hargaMakanan := 15000
+      end
+    else if makanan = '4' then
+      begin
+      hargaMakanan := 30000
+      end
+    else if makanan = '5' then
+    begin
+      hargaMakanan := 5000;
+      end; 
+      
+    writeln('Daftar Menu Minuman:');
+    writeln('1. Es bubur sumsum - Rp. 7000');
+    writeln('2. Jus Jeruk - Rp. 6000');
+    writeln('3. Es tebak  - Rp. 5000');
+    writeln('4. Es oyen - Rp. 6000');
+    writeln('5. Jus alpukat - Rp. 8000');
+    writeln('6. es kelapa  - Rp. 5000');
+    writeln('Pilih minuman:');
+    readln(minuman);
+    writeln('Jumlah:');
+    readln(jumlahMinuman);
+    if minuman = '1' then
+    begin
+      hargaMinuman := 7000
+      end
+    else if minuman = '2' then
+    begin
+      hargaMinuman := 6000
+      end
+    else if minuman = '3' then
+    begin
+      hargaMinuman := 5000;
+      end
+    else if minuman = '4' then
+    begin
+      hargaMinuman := 6000
+      end
+    else if minuman = '5' then
+    begin
+      hargaMinuman := 8000
+      end
+    else if minuman = '6' then
+    begin
+      hargaMinuman := 5000;
+      end;
+   totalHarga := (hargaMakanan * jumlahMakanan) + ( hargaMinuman * jumlahMinuman) ;
+   writeln('Pesanan Anda:');
+   writeln('Makanan: ', makanan, ' - Rp. ', hargaMakanan);
+   writeln('Jumlah: ', jumlahMakanan);
+   writeln('Minuman: ', minuman, ' - Rp. ', hargaMinuman);
+   writeln('Jumlah: ', jumlahMinuman);
+   writeln('Total Harga: Rp. ', totalHarga);
+   
+   write('atas nama siapa: ') ;
+   readln(atasnamasiapa) ;
+   writeln('TERIMAKASIH SUDAH DATANG DIRESTORAN KAMI, SILAHKAN DITUNGGU PESANANNYA, SEMOGA MEMUASKAN');
+
+   
+  end
+  else
+    writeln('Kode Pesanan Tidak Valid.');
+
+
+
+end.
