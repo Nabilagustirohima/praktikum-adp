@@ -1,0 +1,73 @@
+program tabelperkaliandanpenjumlahan;
+uses crt;
+var 
+n,i, j, pilihan :Integer;
+begin
+  repeat
+  clrscr;
+  WriteLn('input nilai n (1≤n≤10) = ');
+  readln( n) ;
+  if (n < 1) or (n > 10) then
+    begin
+      writeln('Nilai n tidak valid. Silakan masukkan nilai antara 1 dan 10.');
+      writeln('Tekan tombol enter untuk melanjutkan...');
+      readln;
+      continue;
+      end;
+    writeln('MENU :');
+    writeln;
+    writeln('1. Tabel Perkalian n x n');
+    writeln('2. Tabel Penjumlahan n x n');
+    writeln('3. Keluar');
+    writeln;
+    write('Masukkan pilihan (1/2/3): ');
+    readln(pilihan);
+    if pilihan =1 then
+    begin 
+    writeln('Tabel perkalian ', n, ' x ', n, ':');
+    WriteLn('____________________________________________________________________');
+    Write('|  x |');
+    for i := 1 to n do
+      Write(i:3,'  |'); WriteLn();
+      WriteLn('____________________________________________________________________');
+      for i := 1 to n do
+    begin
+    write('|', i: 4,'|');
+    for j := 1 to n do
+    begin
+      write(i * j: 5, '|');
+    end;
+    writeln;
+   end;
+ end
+    
+   else if pilihan=2 then 
+    begin 
+    writeln('Tabel penjumlahan ', n, ' + ', n, ':');
+    WriteLn('_____________________________________________________________________');
+    Write('|  x |');
+    for i := 1 to n do
+      Write(i:3,'  |'); WriteLn();
+      WriteLn('_____________________________________________________________________');
+      for i := 1 to n do
+    begin
+    write('|', i: 4,'|');
+    for j := 1 to n do
+    begin
+      write(i + j: 5, '|');
+    end;
+    writeln;
+   end;
+ end
+ 
+else if pilihan = 3 then
+ writeln('keluar')
+ 
+  else if (pilihan < 1 ) or ( pilihan >3) then 
+    writeln('Pilihan tidak valid. Silakan masukkan pilihan yang benar.');
+
+    writeln;
+    writeln('untuk melanjutkan program tekan tombol enter');
+    readln;
+    until pilihan = 3;
+ end.
