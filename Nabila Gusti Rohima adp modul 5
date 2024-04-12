@@ -1,0 +1,21 @@
+def caesar_cipher(text, nilai):
+    encrypted_text = ""
+    huruf = "abcdefghijklmnopqrstuvwxyz"
+    
+    for char in text:
+        if char.isalpha():
+            nilai_k = (huruf.index(char.lower()) + nilai) % 26
+            nilai_char = huruf[nilai_k]
+            if char.isupper():
+                encrypted_text += nilai_char.upper()
+            else:
+                encrypted_text += nilai_char
+        else:
+            encrypted_text += char
+    
+    return encrypted_text
+
+k = int(input("Masukkan nilai k (dari 1 hingga 26): "))
+teks = input("Masukkan teks yang ingin dienkripsi: ")
+hasil_enkripsi = caesar_cipher(teks, k)
+print("Hasil enkripsi:", hasil_enkripsi)
