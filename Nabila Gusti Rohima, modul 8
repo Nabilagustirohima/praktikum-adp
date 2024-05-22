@@ -1,0 +1,55 @@
+def Data_baru(keuangan):
+    with open("Keuangan_pribadimu.txt", "a") as file:
+        file.write(f"{keuangan['Tanggal']},{keuangan['Keterangan']},{keuangan['Jumlah']},{keuangan['Tipe']}\n")
+    tampilkan_data()
+
+def hapus_data(keterangan):
+    with open("Keuangan_pribadimu.txt", "r") as file:
+        data_sebelumnya = file.readlines()
+
+    with open("Keuangan_pribadimu.txt", "w") as file:
+        for keuangan in data_sebelumnya:
+            if keterangan not in keuangan:
+                file.write(keuangan)
+    tampilkan_data()  
+
+def tampilkan_data():
+    print("-" * 50)
+    print("|{:12}|{:12}|{:12}|{:12}|".format("Tanggal","Keterangan","Jumlah","Tipe"))
+    print("-" * 50)
+    with open("Keuangan_pribadimu.txt", "r") as file:
+        for line in file:
+            keuangan = dict(zip(["Tanggal", "Keterangan", "Jumlah", "Tipe"], line.strip().split(',')))
+            print("|{:12}|{:12}|{:12}|{:12}|".format(keuangan["Tanggal"], keuangan["Keterangan"], keuangan["Jumlah"], keuangan["Tipe"]))
+            print("-" * 50)
+
+def main():
+    while True:
+        print("\nPilihlah Perubahan Kegiatan:")
+        print("1. Simpan Data Kegiatan")
+        print("2. Hapus Data Kegiatan")
+        print("3. Tampilkan Data Kegiatan")
+        print("4. Keluar")
+
+        pilih = input("Masukkan pilihan : ")
+        
+        if pilih == '1':
+            tanggal = input("Masukkan tanggal hari ini: ")
+            ket = input("Masukkan keterangan (deskripsi singkat): ")
+            jumlah = input("Masukkan jumlah uang: ")
+            tipe = input("Masukkan tipe (pemasukan/pengeluaran): ")
+          
+            keuangan = {"Tanggal": tanggal, "Keterangan": ket, "Jumlah": jumlah, "Tipe": tipe}
+            Data_baru(keuangan)
+                       
+        elif pilih == '2':
+            tampilkan_data()
+            
+            hapus_data(input("Masukkan keterangan kegiatan yang ingin dihapus: "))
+        elif pilih == '3':
+            tampilkan_data()
+
+        elif pilih == '4':
+            break
+
+main()
