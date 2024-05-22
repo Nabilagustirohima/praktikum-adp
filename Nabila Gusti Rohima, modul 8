@@ -14,14 +14,14 @@ def hapus_data(keterangan):
     tampilkan_data()  
 
 def tampilkan_data():
-    print("-" * 50)
+    print("-" * 53)
     print("|{:12}|{:12}|{:12}|{:12}|".format("Tanggal","Keterangan","Jumlah","Tipe"))
-    print("-" * 50)
+    print("-" * 53)
     with open("Keuangan_pribadimu.txt", "r") as file:
         for line in file:
             keuangan = dict(zip(["Tanggal", "Keterangan", "Jumlah", "Tipe"], line.strip().split(',')))
             print("|{:12}|{:12}|{:12}|{:12}|".format(keuangan["Tanggal"], keuangan["Keterangan"], keuangan["Jumlah"], keuangan["Tipe"]))
-            print("-" * 50)
+            print("-" * 53)
 
 def main():
     while True:
