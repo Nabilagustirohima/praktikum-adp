@@ -1,0 +1,158 @@
+program python
+import os
+import pygame
+import sys
+from termcolor import colored, cprint
+
+
+os.system('cls')
+
+# Fungsi untuk membaca menu dari file
+def bacamenu(nama_file):
+    menu = []
+    try:
+        with open(nama_file, 'r') as file:
+            for line in file:
+                try:
+                    nama_hidangan, harga, image_path = line.strip().split(',')
+                    menu.append({"nama_hidangan": nama_hidangan, "harga": int(harga), "image": image_path})
+                except ValueError:
+                    print(f"Format baris tidak valid di file {nama_file}: {line.strip()}")
+    except FileNotFoundError:
+        print(f"File {nama_file} tidak ditemukan.")
+    return menu
+
+# Fungsi untuk menampilkan menu
+def tampilkan_menu(makanan, minuman, cemilan):
+    print("\nMenu Makanan:")
+    for i, item in enumerate(makanan, start=1):
+        print(f"{i}. {item['nama_hidangan']} - Rp {item['harga']}")
+    print("\nMenu Minuman:")
+    for i, item in enumerate(minuman, start=1):
+        print(f"{i}. {item['nama_hidangan']} - Rp {item['harga']}")
+    print("\nMenu Cemilan:")
+    for i, item in enumerate(cemilan, start=1):
+        print(f"{i}. {item['nama_hidangan']} - Rp {item['harga']}")
+
+# Fungsi untuk menambahkan item ke pesanan
+def memesan(order, item_type, item_index, makanan, minuman,cemilan):
+    if item_type == 'makanan' and 1 <= item_index <= len(makanan):
+        order.append(makanan[item_index - 1])
+    elif item_type == 'minuman' and 1 <= item_index <= len(minuman):
+        order.append(minuman[item_index - 1])
+    elif item_type == 'cemilan' and 1 <= item_index <= len(cemilan):
+        order.append(cemilan[item_index - 1])
+    else:
+        print("Nomor item tidak valid, silakan coba lagi.")
+
+# Fungsi untuk menghitung total harga
+def total(order):
+    return sum(item['harga'] for item in order)
+
+# Fungsi untuk menampilkan struk pembelian dengan gambar menggunakan Pygame
+def tampilkan_struk_gambar(order):
+    pygame.init()
+
+    kesamping,tinggi = 800, 600
+    layar= pygame.display.set_mode((kesamping,tinggi))
+    pygame.display.set_caption("Struk Pembelian")
+
+    font = pygame.font.SysFont(None, 24)
+    small_font = pygame.font.SysFont(None, 16)
+
+    cream = (248,229,187)
+    black = (0, 0, 0)
+
+    layar.fill(cream)
+
+    total_harga = total(order)
+    y_offset = 50
+
+    # Judul
+    judul = font.render("Struk Pembelian", True, black)
+    layar.blit(judul, (kesamping // 2 - judul.get_width() // 2, y_offset))
+    y_offset += 50
+
+    # Menampilkan setiap item
+    for item in order:
+        try:
+            img = pygame.image.load(item['image'])
+            img = pygame.transform.scale(img, (50, 50))
+            layar.blit(img, (50, y_offset))
+
+            tulisan_item = small_font.render(f"{item['nama_hidangan']} - Rp {item['harga']}", True, black)
+            layar.blit(tulisan_item, (140, y_offset + 25))
+            y_offset += 80
+        except pygame.error as e:
+            print(f"Error loading image: {e}")
+
+    # Total harga
+    total_teks = font.render(f"Total Harga: Rp {total_harga}", True, black)
+    layar.blit(total_teks, (kesamping// 2 - total_teks.get_width() //2, y_offset))
+
+    pygame.display.flip()
+
+    # Menunggu pengguna menutup jendela
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+# Program utama
+makanan = bacamenu('Menu_Makanan.txt')
+minuman = bacamenu('Menu_Minuman.txt')
+cemilan = bacamenu('Menu_Cemilan.txt')
+
+
+# Cek apakah menu berhasil dibaca
+if not makanan and not minuman and not cemilan:
+    print("Tidak ada menu yang tersedia. Program dihentikan.")
+else:
+    order = []
+    while True:
+        tampilkan_menu(makanan, minuman,cemilan)
+        pilihan = input("Apakah Anda ingin membeli makanan atau minuman atau mungkin cemilan maksimal 5 macam? (makanan/minuman/cemilan/selesai): ").strip().lower()
+        if pilihan == 'selesai':
+            break
+        elif pilihan in ['makanan', 'minuman','cemilan']:
+            try:
+                item_index = int(input("Masukkan nomor item yang ingin dibeli: "))
+                memesan(order, pilihan, item_index, makanan, minuman, cemilan)
+            except ValueError:
+                cprint("Input tidak valid. Masukkan nomor item yang ingin dibeli.","red")
+        else:
+            cprint("Pilihan tidak valid, silakan coba lagi.","light_red")
+
+    if order:
+        tampilkan_struk_gambar(order)
+    else:
+        cprint("Anda tidak memesan apa pun.","magenta")
+
+menu_makanan.txt
+BAKSO,18000,bakso.jpg
+
+NASI GORENG,12000,nasi_goreng.jpg
+
+PECEL AYAM,15000,pecel_ayam.png 
+
+SATE,17000,sate.jpg
+
+
+menu_minuman.txt
+ES TEH,5000,es_teh.jpg
+
+AIR PUTIH DINGIN,1000,air_putih_dingin.jpg
+
+JUS JERUK,8000,es_jeruk.jpg
+
+
+menu_cemilan.txt
+PISCOK,8000,piscok.jpg
+
+ES KUL KUL PISANG,5000,es_kul_kul.jpg
+
+ES TELER,12000,es_teler.jpg
+
+MARTABAK MINI,8000,martabak_mini.jpg
+
